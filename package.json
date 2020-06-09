@@ -1,0 +1,45 @@
+{
+  "name": "apollo-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx babel-node extra",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon --exec babel-node src",
+    "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
+    "lint:fix": "npm run lint --fix",
+    "start": "tsc-watch --project . --onSuccess \"npm run nodemon\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vibhor-garg-98/apollo-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vibhor-garg-98/apollo-server/issues"
+  },
+  "homepage": "https://github.com/vibhor-garg-98/apollo-server#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "nodemon": "^2.0.4",
+    "dotenv": "^8.2.0",
+    "husky": "^4.2.1",
+    "tsc-watch": "^4.1.0",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@mobylogix/merge-graphql-schemas": "^1.5.4",
+    "apollo-server-express": "^2.14.2",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.1.0",
+    "merge-graphql-schemas": "^1.7.8"
+  }
+}

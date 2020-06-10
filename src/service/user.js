@@ -4,7 +4,7 @@ class User {
     this.id = 0;
   }
   getAllUser() {
-    let mapToArray = Array.from(this.users.values());
+    const mapToArray = Array.from(this.users.values());
     return mapToArray;
   }
   getUser(id) {
@@ -23,7 +23,7 @@ class User {
   }
   deleteUser(id) {
     this.users.delete(Number(id));
-    return this.id;
+    return id;
   }
 }
 

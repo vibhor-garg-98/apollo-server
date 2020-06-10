@@ -1,9 +1,7 @@
 export default {
-  getMyProfile: () => {
-    return {
+  getMyProfile: () => ({
       id: 1,
-      name: "Vibhor",
-      email: "vibhor.garg@successive.tech",
-    };
-  },
+      name: 'Vibhor',
+      email: 'vibhor.garg@successive.tech',
+    }),
 };

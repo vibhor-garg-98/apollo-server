@@ -1,8 +1,7 @@
-import { server } from "typescript";
-import express from "express";
-import bodyParser from "body-parser";
-import { ApolloServer } from "apollo-server-express";
-import graphqlHTTP from "express-graphql";
+import express from 'express';
+import bodyParser from 'body-parser';
+import { ApolloServer } from 'apollo-server-express';
+import { createServer } from 'http';
 
 class Server {
   constructor(config) {
@@ -18,15 +17,14 @@ class Server {
 
   run = () => {
     const {
-      app,
       config: { port },
     } = this;
-    this.app.listen(this.config.port, (err) => {
+    this.httpServer.listen(port, (err) => {
       if (err) {
-        console.log("error");
+        console.log('error');
         throw err;
       }
-      console.log("App is running successfully on port " + port);
+      console.log(`App is running successfully on port  ${port}`);
     });
   };
 
@@ -38,23 +36,19 @@ class Server {
 
   setupRoutes = () => {
     const { app } = this;
-    app.use("/health-check", (req, res) => {
-      console.log(" Inside health check ");
-      res.send(" I am OK ");
-      app.use(
-        "/graphql",
-        graphqlHTTP({
-          schema,
-          graphiql: true,
-        })
-      );
+    app.use('/health-check', (req, res) => {
+      console.log(' Inside health check ');
+      res.send(' I am OK ');
     });
   };
 
-  async setupApolloServer(schema) {
+  setupApolloServer(schema) {
     const { app } = this;
     this.server = new ApolloServer({ ...schema });
     this.server.applyMiddleware({ app });
+    this.httpServer = createServer(app);
+    this.server.installSubscriptionHandlers(this.httpServer);
+    this.run();
   }
 }
 

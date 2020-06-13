@@ -1,10 +1,23 @@
 input CreateUserInput {
   name: String!
   email: String!
-  role: String
+  password: String!
 }
 
-input UpdateUserInput{
+type CreateUserOutput {
+  name: String!
+  email: String!
+  role: String!
+}
+
+input UpdateUserInput {
   id: ID!
-  role: String
+  password: String
+  name: String
+  email: String
+}
+
+input getUserData {
+  skip: Int
+  limit: Int
 }

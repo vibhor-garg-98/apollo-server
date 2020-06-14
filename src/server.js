@@ -49,7 +49,14 @@ class Server {
       ...schema,
       dataSources: () => ({
         userApi: new UserApi(),
-      })
+        traineeApi: new TraineeApi(),
+      }),
+      context: ({ req }) => {
+        if (req) {
+          return { token: req.headers.authorization };
+        }
+        return {};
+      },
     });
     this.server.applyMiddleware({ app });
     this.httpServer = createServer(app);

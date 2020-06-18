@@ -7,7 +7,7 @@ export default {
         dataSources: { traineeApi },
       } = context;
       const response = await traineeApi.getTrainee(args);
-      return response.data.records;
+      return response.data;
     } catch (error) {
       return new UserInputError('Arguments are invalid', {
         invalidArgs: Object.keys(args),

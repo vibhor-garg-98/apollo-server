@@ -42,7 +42,7 @@ export default {
         password,
       });
       pubsub.publish(constant.subscriptions.TRAINEE_UPDATED, {
-        traineeUpdated: response.data.id,
+        traineeUpdated: { originalId: id, name, email },
       });
       return response.data.id;
     } catch (error) {
